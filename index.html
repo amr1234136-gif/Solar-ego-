@@ -87,8 +87,7 @@
     .scene-sun { transform-origin:116px 92px; animation:scene-sun-pulse 3.6s ease-in-out infinite alternate; }
     .scene-ray { transform-origin:116px 92px; animation:scene-ray-pulse 3.6s ease-in-out infinite alternate; }
     .scene-panel-glint { animation:scene-panel-glint 3.8s ease-in-out infinite; }
-    /* Rotor rotation is driven by SVG around the real hub, avoiding mobile transform-origin quirks. */
-    .scene-rotor { transform-box:fill-box; transform-origin:center; animation:none; }
+    .scene-rotor { transform-box:fill-box; transform-origin:center; animation:scene-rotor-turn 5s linear infinite; }
     .scene-wind { stroke-dasharray:10 18; animation:scene-airflow 2.6s linear infinite; }
     .scene-core { transform-origin:475px 322px; animation:scene-core-pulse 2.5s ease-in-out infinite alternate; }
     .scene-energy-line { stroke-dasharray:12 9; animation:scene-energy-flow 2.3s linear infinite; }
@@ -111,7 +110,7 @@
     @media (max-width:900px) { .intro-content { grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:2rem; }.intro-mark { font-size:clamp(5.5rem,13vw,8rem); }.intro-tagline { font-size:clamp(2.15rem,4.5vw,3.2rem); }.intro-visual { min-height:260px; } }
     @media (max-width:700px) { .intro-screen { justify-content:flex-start; padding:1.45rem 1.35rem 1.1rem; }.intro-grid { inset:.65rem; }.intro-orbit { top:30%; left:50%; width:100vw; }.intro-orbit--inner { width:78vw; }.intro-light { filter:blur(60px); }.intro-content { display:flex; flex-direction:column; align-items:stretch; gap:.85rem; width:min(100%,560px); margin:auto; }.intro-copy { text-align:center; }.intro-kicker { justify-content:center; font-size:.58rem; letter-spacing:.12em; }.intro-mark { margin:.55rem 0 .1rem; font-size:clamp(4.1rem,16vw,5.3rem); }.intro-wordmark { margin-top:.6rem; font-size:clamp(.72rem,3.6vw,.96rem); letter-spacing:.12em; }.intro-divider { gap:.5rem; margin:.75rem auto 0; }.intro-divider small { font-size:.46rem; letter-spacing:.1em; }.intro-tagline { margin-top:.8rem; font-size:clamp(1.8rem,7.6vw,2.6rem); }.intro-description { max-width:24rem; margin:.65rem auto 0; font-size:.86rem; }.intro-cta { margin-top:1rem; padding:.78rem 1.2rem; }.intro-sources { justify-content:center; gap:.4rem .6rem; margin:.9rem auto 0; font-size:.48rem; letter-spacing:.04em; }.intro-visual { order:-1; flex:none; aspect-ratio:1.72; min-height:0; max-height:215px; border-radius:1rem; }.intro-signoff { margin:.7rem auto 0; font-size:.46rem; letter-spacing:.13em; } }
     @media (max-height:700px) and (min-width:701px) { .intro-screen { padding-top:1.5rem; padding-bottom:1.5rem; }.intro-content { gap:2rem; }.intro-mark { font-size:clamp(5rem,11vw,8rem); }.intro-tagline { margin-top:1.2rem; }.intro-visual { min-height:230px; }.intro-signoff { margin-top:.75rem; } }
-    @media (prefers-reduced-motion:reduce) { .intro-screen,.intro-screen *,.intro-screen::before,.intro-screen::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }.scene-rotor animateTransform { display:none; }.intro-screen.is-leaving { display:none; } }
+    @media (prefers-reduced-motion:reduce) { .intro-screen,.intro-screen *,.intro-screen::before,.intro-screen::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }.intro-screen.is-leaving { display:none; } }
   </style>
 <noscript><style>body.intro-locked{overflow:auto!important}.intro-screen{display:none!important}</style></noscript>
 </head>
@@ -185,7 +184,6 @@
               <path d="M694 212 C676 268 645 297 602 305 C612 258 639 222 687 207Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
               <circle cx="694" cy="212" r="19" fill="#e2e8f0" stroke="#67e8f9" stroke-width="4"/>
               <circle cx="694" cy="212" r="7" fill="#07100f"/>
-              <animateTransform attributeName="transform" type="rotate" from="0 694 212" to="360 694 212" dur="5s" repeatCount="indefinite" />
             </g>
             <text x="626" y="482" fill="#b8e977" font-size="15" font-weight="700">WIND TURBINE</text>
             <text x="648" y="463" fill="#d7fce7" font-size="11">AIR DRIVES ROTOR</text>
