@@ -87,7 +87,7 @@
     .scene-sun { transform-origin:116px 92px; animation:scene-sun-pulse 3.6s ease-in-out infinite alternate; }
     .scene-ray { transform-origin:116px 92px; animation:scene-ray-pulse 3.6s ease-in-out infinite alternate; }
     .scene-panel-glint { animation:scene-panel-glint 3.8s ease-in-out infinite; }
-    .scene-rotor { transform-box:fill-box; transform-origin:center; animation:scene-rotor-turn 5s linear infinite; }
+    .scene-rotor { transform-box:view-box; transform-origin:694px 212px; animation:scene-rotor-turn 5s linear infinite; }
     .scene-wind { stroke-dasharray:10 18; animation:scene-airflow 2.6s linear infinite; }
     .scene-core { transform-origin:475px 322px; animation:scene-core-pulse 2.5s ease-in-out infinite alternate; }
     .scene-energy-line { stroke-dasharray:12 9; animation:scene-energy-flow 2.3s linear infinite; }
@@ -180,8 +180,8 @@
             <path d="M650 453 H717" stroke="#d8f7ef" stroke-width="7" stroke-linecap="round" opacity=".75"/>
             <g class="scene-rotor">
               <path d="M694 212 C671 151 679 110 712 79 C733 115 733 160 704 210Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
-              <path d="M694 212 C751 180 795 181 830 205 C793 236 747 244 699 218Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
-              <path d="M694 212 C676 268 645 297 602 305 C612 258 639 222 687 207Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3"/>
+              <path d="M694 212 C671 151 679 110 712 79 C733 115 733 160 704 210Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3" transform="rotate(120 694 212)"/>
+              <path d="M694 212 C671 151 679 110 712 79 C733 115 733 160 704 210Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="3" transform="rotate(240 694 212)"/>
               <circle cx="694" cy="212" r="19" fill="#e2e8f0" stroke="#67e8f9" stroke-width="4"/>
               <circle cx="694" cy="212" r="7" fill="#07100f"/>
             </g>
