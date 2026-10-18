@@ -113,6 +113,31 @@
     @media (prefers-reduced-motion:reduce) { .intro-screen,.intro-screen *,.intro-screen::before,.intro-screen::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }.intro-screen.is-leaving { display:none; } }
   </style>
 <noscript><style>body.intro-locked{overflow:auto!important}.intro-screen{display:none!important}</style></noscript>
+  <style> /* System overview scene animations */
+.hp-sun-glow{animation:hp-pulse 2.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.hp-beam{animation:hp-beam 2.8s ease-in-out infinite alternate}
+.hp-glint{animation:hp-glint 4.5s ease-in-out infinite}
+.hp-dot{animation:hp-blink 1.4s ease-in-out infinite alternate}
+.hp-led{animation:hp-blink 1.6s ease-in-out infinite alternate}
+.hp-wind{stroke-dasharray:70 26;animation:hp-flow 2.2s linear infinite}
+.hp-dash{animation:hp-flow 2.6s linear infinite}
+.hp-down{animation:hp-down 1.1s linear infinite}
+.hp-d2{animation-delay:-.7s}.hp-d3{animation-delay:-1.3s}
+.hp-fan{transform-box:fill-box;transform-origin:center;animation:hp-spin .7s linear infinite}
+.hp-shine{animation:hp-shine 1.3s linear infinite}
+.hybrid-hub{animation:hp-hub 2.2s ease-in-out infinite alternate}
+@keyframes hp-pulse{from{opacity:.65;transform:scale(.94)}to{opacity:1;transform:scale(1.08)}}
+@keyframes hp-beam{from{opacity:.55}to{opacity:1}}
+@keyframes hp-glint{0%,25%{opacity:0;transform:translateX(0) rotate(14deg)}50%{opacity:.8}75%,100%{opacity:0;transform:translateX(180px) rotate(14deg)}}
+@keyframes hp-blink{from{opacity:.35}to{opacity:1}}
+@keyframes hp-flow{to{stroke-dashoffset:-96}}
+@keyframes hp-down{to{stroke-dashoffset:-30}}
+@keyframes hp-spin{to{transform:rotate(360deg)}}
+@keyframes hp-shine{from{transform:translateX(0)}to{transform:translateX(48px)}}
+@keyframes hp-hub{from{box-shadow:0 0 6px rgba(163,230,53,.15)}to{box-shadow:0 0 26px rgba(163,230,53,.5)}}
+@media (max-width:480px){.hybrid-hub{padding:.3rem .5rem!important}.hybrid-hub span:last-child{font-size:6px!important;letter-spacing:.06em!important}.hybrid-hub span:first-child{font-size:.75rem!important}}
+@media (prefers-reduced-motion:reduce){.hp-sun-glow,.hp-beam,.hp-glint,.hp-dot,.hp-led,.hp-wind,.hp-dash,.hp-down,.hp-fan,.hp-shine,.hybrid-hub{animation:none}}
+</style>
 </head>
 <body class="font-sans text-white antialiased selection:bg-leaf selection:text-ink">
   <!-- Branded intro screen: visitors enter the site from here on every visit. -->
@@ -244,26 +269,97 @@
             <div class="flex items-center justify-between"><div><p class="font-mono text-[10px] uppercase tracking-[.2em] text-muted">System overview</p><p class="mt-1 font-display text-lg font-semibold">Energy, working together</p></div><span class="rounded-full border border-mint/20 bg-mint/10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-mint">Concept model</span></div>
             <div class="relative mt-5 aspect-[1.14/1] overflow-hidden rounded-2xl border border-white/[.07] bg-[#091311]">
               <div class="absolute inset-0 opacity-70" style="background:radial-gradient(circle at 50% 46%,rgba(55,123,80,.22),transparent 60%),linear-gradient(180deg,transparent 55%,rgba(16,38,29,.8))"></div>
-              <!-- Sun and rays -->
-              <div class="absolute left-[17%] top-[19%] h-14 w-14 rounded-full bg-gradient-to-br from-yellow-200 to-amber-500 shadow-[0_0_55px_12px_rgba(251,191,36,.18)] sm:h-16 sm:w-16"></div>
-              <div class="absolute left-[17%] top-[19%] h-14 w-14 animate-pulse rounded-full border border-amber-300/30 sm:h-16 sm:w-16"></div>
-              <!-- Ground plane -->
-              <div class="absolute -bottom-[22%] left-[-10%] h-[46%] w-[122%] rotate-[-7deg] rounded-[50%] border-t border-leaf/20 bg-gradient-to-b from-[#18362a] to-[#0c1a15]"></div>
-              <!-- Wind turbine illustration -->
-              <div class="absolute bottom-[22%] right-[22%] h-[49%] w-1 origin-bottom bg-gradient-to-b from-slate-100 to-slate-400"></div>
-              <div class="absolute bottom-[69%] right-[calc(22%-5px)] z-10 h-3 w-3 rounded-full bg-white shadow-[0_0_12px_white]"></div>
-              <div class="turbine absolute bottom-[69%] right-[22%] z-10 h-1 w-1">
-                <span class="absolute bottom-0 left-0 h-[92px] w-2 origin-bottom -translate-x-1/2 rounded-full bg-gradient-to-t from-white/80 to-white/10 sm:h-[108px]"></span>
-                <span class="absolute bottom-0 left-0 h-[92px] w-2 origin-bottom -translate-x-1/2 rotate-[120deg] rounded-full bg-gradient-to-t from-white/80 to-white/10 sm:h-[108px]"></span>
-                <span class="absolute bottom-0 left-0 h-[92px] w-2 origin-bottom -translate-x-1/2 rotate-[240deg] rounded-full bg-gradient-to-t from-white/80 to-white/10 sm:h-[108px]"></span>
-              </div>
-              <!-- Solar array -->
-              <div class="absolute bottom-[13%] left-[8%] h-[24%] w-[34%] -skew-y-[12deg] border border-cyan-200/50 bg-gradient-to-br from-slate-700 via-blue-950 to-[#0a1518] shadow-xl">
-                <div class="absolute inset-0" style="background-image:linear-gradient(90deg,transparent 32%,rgba(125,211,252,.32) 33%,transparent 34%,transparent 65%,rgba(125,211,252,.32) 66%,transparent 67%),linear-gradient(0deg,transparent 32%,rgba(125,211,252,.32) 33%,transparent 34%,transparent 65%,rgba(125,211,252,.32) 66%,transparent 67%)"></div>
-                <div class="absolute -bottom-5 left-[15%] h-5 w-1 bg-slate-400"></div><div class="absolute -bottom-5 right-[15%] h-5 w-1 bg-slate-400"></div>
-              </div>
-              <!-- Energy flow dotted paths -->
-              <svg class="absolute inset-0 h-full w-full" viewBox="0 0 500 440" fill="none" aria-hidden="true"><path class="energy-flow" d="M112 125C154 166 161 222 185 259C199 281 216 294 235 304M388 115C346 163 339 217 315 257C300 281 284 295 265 304" stroke="#a3e635" stroke-opacity=".62" stroke-width="1.7" stroke-dasharray="4 8"/><circle cx="235" cy="304" r="4" fill="#a3e635"/><circle cx="265" cy="304" r="4" fill="#67e8f9"/></svg><div class="hybrid-hub absolute left-1/2 top-[68%] z-20 -translate-x-1/2 rounded-xl border border-leaf/45 bg-[#07100f]/90 px-3 py-2 text-center backdrop-blur"><span class="block font-display text-sm font-bold text-leaf">E-R</span><span class="block whitespace-nowrap font-mono text-[7px] uppercase tracking-[.14em] text-white/75">Hybrid control</span></div></div><div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3"><div class="min-w-0 rounded-xl border border-white/10 bg-white/[.025] px-3 py-2.5"><span class="block font-mono text-[9px] uppercase tracking-[.14em] text-muted">Solar input</span><span class="mt-1 block text-xs font-semibold text-amber-200">☼ Capture</span></div><div class="min-w-0 rounded-xl border border-white/10 bg-white/[.025] px-3 py-2.5"><span class="block font-mono text-[9px] uppercase tracking-[.14em] text-muted">Wind input</span><span class="mt-1 block text-xs font-semibold text-cyan-200">↻ Generate</span></div><div class="col-span-2 min-w-0 rounded-xl border border-leaf/20 bg-leaf/[.04] px-3 py-2.5 sm:col-span-1"><span class="block font-mono text-[9px] uppercase tracking-[.14em] text-muted">Hybrid control</span><span class="mt-1 block text-xs font-semibold text-leaf">Combine &amp; manage</span></div></div> <div class="mt-4 flex items-center justify-between border-t border-white/[.08] pt-4"><div class="flex items-center gap-2 text-xs text-muted"><span class="h-2 w-2 rounded-full bg-mint"></span> One integrated system</div><span class="font-mono text-[9px] tracking-[.12em] text-white/40">E-R / 01</span></div>
+              <!-- System overview scene: sunlight onto the panel, wind through the vertical-axis turbine, both feeding the hybrid hub -->
+              <svg class="hp-scene absolute inset-0 h-full w-full" viewBox="0 0 500 440" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
+                <defs>
+                  <radialGradient id="hp-sun"><stop stop-color="#fff7c2"/><stop offset=".45" stop-color="#fbbf24"/><stop offset="1" stop-color="#f59e0b"/></radialGradient>
+                  <radialGradient id="hp-sun-glow"><stop stop-color="#fbbf24" stop-opacity=".55"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></radialGradient>
+                  <linearGradient id="hp-beam" gradientUnits="userSpaceOnUse" x1="80" y1="95" x2="90" y2="300"><stop stop-color="#fbbf24" stop-opacity=".5"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></linearGradient>
+                  <linearGradient id="hp-panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#27489f"/><stop offset="1" stop-color="#0c1d5c"/></linearGradient>
+                  <linearGradient id="hp-cyl" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#8d9aa8"/><stop offset=".3" stop-color="#ffffff"/><stop offset=".62" stop-color="#e3e9ef"/><stop offset="1" stop-color="#7f8d9b"/></linearGradient>
+                  <linearGradient id="hp-wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#3a6fc0"/><stop offset="1" stop-color="#16397a"/></linearGradient>
+                  <linearGradient id="hp-pale" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b8c4cf"/><stop offset=".5" stop-color="#e9eef3"/><stop offset="1" stop-color="#aab7c4"/></linearGradient>
+                  <linearGradient id="hp-lip" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#aeb9c5"/></linearGradient>
+                  <linearGradient id="hp-wind" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2f7be0" stop-opacity="0"/><stop offset=".35" stop-color="#2f7be0"/><stop offset="1" stop-color="#60a5fa"/></linearGradient>
+                  <clipPath id="hp-cyl-clip"><rect x="352" y="178" width="40" height="122" rx="9"/></clipPath>
+                  <clipPath id="hp-panel-clip"><polygon points="14,300 168,268 168,340 14,376"/></clipPath>
+                </defs>
+
+                <!-- Ground -->
+                <path d="M0 408C90 398 160 352 250 346C340 341 420 340 500 374V440H0Z" fill="#12281f"/>
+                <path d="M0 408C90 398 160 352 250 346C340 341 420 340 500 374" stroke="#2f5d44" stroke-opacity=".6" stroke-width="1.5"/>
+
+                <!-- Sun, glow and beam -->
+                <circle class="hp-sun-glow" cx="80" cy="80" r="70" fill="url(#hp-sun-glow)"/>
+                <circle cx="80" cy="80" r="30" fill="url(#hp-sun)"/>
+                <polygon points="62,102 98,100 168,268 14,300" fill="url(#hp-beam)" class="hp-beam"/>
+
+                <!-- Solar panel -->
+                <path d="M62 362V402M146 344V388" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                <polygon points="14,300 168,268 168,340 14,376" fill="url(#hp-panel)" stroke="#8fb4ff" stroke-opacity=".75" stroke-width="2"/>
+                <g clip-path="url(#hp-panel-clip)" stroke="#9db8ff" stroke-opacity=".5" stroke-width="1.5">
+                  <path d="M65 289V365M116 278V352"/>
+                  <path d="M14 325L168 293M14 350L168 316"/>
+                  <rect class="hp-glint" x="-60" y="250" width="34" height="150" fill="#e0f2fe" opacity=".5" transform="rotate(14 0 0)"/>
+                </g>
+                <circle cx="150" cy="276" r="4.5" fill="#d9f24a" class="hp-dot"/>
+
+                <!-- Sunlight particles travelling sun -> panel -->
+                <g fill="#fde047">
+                  <circle r="3.5"><animateMotion dur="2.4s" repeatCount="indefinite" path="M82 108L40 298"/><animate attributeName="opacity" values="0;1;1;0" dur="2.4s" repeatCount="indefinite"/></circle>
+                  <circle r="3.5"><animateMotion dur="2.4s" begin="-.8s" repeatCount="indefinite" path="M88 110L100 288"/><animate attributeName="opacity" values="0;1;1;0" dur="2.4s" begin="-.8s" repeatCount="indefinite"/></circle>
+                  <circle r="3.5"><animateMotion dur="2.4s" begin="-1.6s" repeatCount="indefinite" path="M94 106L148 276"/><animate attributeName="opacity" values="0;1;1;0" dur="2.4s" begin="-1.6s" repeatCount="indefinite"/></circle>
+                </g>
+
+                <!-- Wind blowing into the turbine -->
+                <g stroke-linecap="round">
+                  <path class="hp-wind" d="M150 186C205 166 255 212 306 206" stroke="url(#hp-wind)" stroke-width="7"/>
+                  <path class="hp-wind hp-d2" d="M138 222C200 204 250 250 306 240" stroke="url(#hp-wind)" stroke-width="6"/>
+                  <path class="hp-wind hp-d3" d="M176 150C230 140 270 156 304 178" stroke="#60a5fa" stroke-opacity=".7" stroke-width="3"/>
+                  <path class="hp-dash" d="M196 262C240 252 276 262 304 262" stroke="#cfe3ff" stroke-opacity=".7" stroke-width="1.6" stroke-dasharray="3 7"/>
+                  <path class="hp-dash" d="M214 134C256 124 290 134 306 156" stroke="#cfe3ff" stroke-opacity=".6" stroke-width="1.6" stroke-dasharray="3 7"/>
+                </g>
+
+                <!-- Vertical-axis wind turbine (shroud, vanes, central cylinder, base fan) -->
+                <g>
+                  <rect x="316" y="190" width="112" height="112" fill="#08162a"/>
+                  <rect x="308" y="186" width="30" height="114" fill="url(#hp-wall)"/>
+                  <rect x="406" y="186" width="30" height="114" fill="url(#hp-wall)"/>
+                  <rect x="338" y="190" width="14" height="110" fill="url(#hp-pale)"/>
+                  <rect x="392" y="190" width="14" height="110" fill="url(#hp-pale)"/>
+                  <rect x="342" y="188" width="5" height="112" rx="2" fill="#fff" opacity=".85"/>
+                  <rect x="397" y="188" width="5" height="112" rx="2" fill="#fff" opacity=".85"/>
+                  <circle class="hp-led" cx="319" cy="262" r="4.5" fill="#38bdf8"/>
+                  <!-- Central cylinder with a moving highlight to read as rotation -->
+                  <rect x="352" y="178" width="40" height="122" rx="9" fill="url(#hp-cyl)"/>
+                  <g clip-path="url(#hp-cyl-clip)"><rect class="hp-shine" x="344" y="178" width="9" height="122" fill="#fff" opacity=".55"/></g>
+                  <!-- Top lip -->
+                  <path d="M298 196C314 194 322 168 346 164H398C422 168 430 194 446 196L438 204C426 202 420 186 400 182H344C324 186 318 202 306 204Z" fill="url(#hp-lip)"/>
+                  <!-- Air travelling down inside the shroud toward the fan -->
+                  <g stroke="#67e8f9" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 9" opacity=".8">
+                    <path class="hp-down" d="M345 200V298"/><path class="hp-down hp-d2" d="M399 200V298"/>
+                    <path class="hp-down hp-d3" d="M330 206V298"/><path class="hp-down" d="M414 206V298"/>
+                  </g>
+                  <!-- Base with spinning fan -->
+                  <rect x="300" y="298" width="144" height="34" rx="8" fill="#0b1626" stroke="#9cc2e6" stroke-width="3"/>
+                  <g transform="translate(372 315)">
+                    <g class="hp-fan" fill="#fff">
+                      <path d="M0 0C-6 -7 -5 -15 0 -16C5 -15 6 -7 0 0Z"/>
+                      <path d="M0 0C-6 -7 -5 -15 0 -16C5 -15 6 -7 0 0Z" transform="rotate(120)"/>
+                      <path d="M0 0C-6 -7 -5 -15 0 -16C5 -15 6 -7 0 0Z" transform="rotate(240)"/>
+                      <circle r="3" fill="#cbd5e1"/>
+                    </g>
+                  </g>
+                </g>
+
+                <!-- Energy flowing into the hybrid hub -->
+                <path d="M168 322C180 346 190 348 204 344" stroke="#fde047" stroke-opacity=".35" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M372 332C368 350 332 350 298 344" stroke="#67e8f9" stroke-opacity=".35" stroke-width="2.4" stroke-linecap="round"/>
+                <path class="energy-flow" d="M168 322C180 346 190 348 204 344" stroke="#fde047" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="4 8"/>
+                <path class="energy-flow" d="M372 332C368 350 332 350 298 344" stroke="#67e8f9" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="4 8"/>
+                <circle r="4.5" fill="#fde047"><animateMotion dur="1.6s" repeatCount="indefinite" path="M168 322C180 346 190 348 204 344"/></circle>
+                <circle r="4.5" fill="#67e8f9"><animateMotion dur="1.6s" begin="-.8s" repeatCount="indefinite" path="M372 332C368 350 332 350 298 344"/></circle>
+              </svg><div class="hybrid-hub absolute left-1/2 top-[73%] z-20 -translate-x-1/2 rounded-xl border border-leaf/45 bg-[#07100f]/90 px-3 py-2 text-center backdrop-blur"><span class="block font-display text-sm font-bold text-leaf">E-R</span><span class="block whitespace-nowrap font-mono text-[7px] uppercase tracking-[.14em] text-white/75">Hybrid control</span></div></div><div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3"><div class="min-w-0 rounded-xl border border-white/10 bg-white/[.025] px-3 py-2.5"><span class="block font-mono text-[9px] uppercase tracking-[.14em] text-muted">Solar input</span><span class="mt-1 block text-xs font-semibold text-amber-200">☼ Capture</span></div><div class="min-w-0 rounded-xl border border-white/10 bg-white/[.025] px-3 py-2.5"><span class="block font-mono text-[9px] uppercase tracking-[.14em] text-muted">Wind input</span><span class="mt-1 block text-xs font-semibold text-cyan-200">↻ Generate</span></div><div class="col-span-2 min-w-0 rounded-xl border border-leaf/20 bg-leaf/[.04] px-3 py-2.5 sm:col-span-1"><span class="block font-mono text-[9px] uppercase tracking-[.14em] text-muted">Hybrid control</span><span class="mt-1 block text-xs font-semibold text-leaf">Combine &amp; manage</span></div></div> <div class="mt-4 flex items-center justify-between border-t border-white/[.08] pt-4"><div class="flex items-center gap-2 text-xs text-muted"><span class="h-2 w-2 rounded-full bg-mint"></span> One integrated system</div><span class="font-mono text-[9px] tracking-[.12em] text-white/40">E-R / 01</span></div>
           </div>
           <div class="absolute -left-4 top-[35%] hidden rounded-xl border border-white/10 bg-ink/90 px-3 py-2 shadow-xl sm:block"><span class="font-mono text-[9px] text-muted">01</span><span class="ml-2 text-xs text-white">Sunlight</span></div>
           <div class="absolute -right-4 top-[55%] hidden rounded-xl border border-white/10 bg-ink/90 px-3 py-2 shadow-xl sm:block"><span class="font-mono text-[9px] text-muted">02</span><span class="ml-2 text-xs text-white">Wind</span></div>
